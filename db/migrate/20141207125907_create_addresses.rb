@@ -7,5 +7,6 @@ class CreateAddresses < ActiveRecord::Migration
       t.integer :person_id
       t.timestamps
     end
+    add_index :addresses, :person_id
   end
 end

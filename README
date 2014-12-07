@@ -1,5 +1,12 @@
 rails console
 rails console --sandbox
+
+Inside Rails Console
+--------------------
+reload!     => to reload the console
+ActiveRecord::Base.logger = Logger.new(STDOUT)      => gives ability to actually see SQL queries
+
+
 rails dbconsole
 rails server -e production -p 4000
 
@@ -199,3 +206,9 @@ Person.where("first_name LIKE :term OR last_name LIKE :term",:term=>text+"%")
 Person.first()
 Person.last()
 
+
+
+Scope under Model
+=================
+scope :submitted, -> { where(submitted: true) }
+scope :underutilized, -> { where('total_hours < 40') }
