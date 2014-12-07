@@ -59,5 +59,20 @@ describe Person do
     Person.find_by_names_starting_with("Ram").should == [lalo_ram,ram_lal]
   end
 
+  it { should have_many(:addresses).class_name(Address) }
+
+  it 'should save the multiple address of a person' do
+    delhi=FactoryGirl.create(:address)
+    mumbai=FactoryGirl.create(:address,:city=>"Mumbai")
+    chennai=FactoryGirl.create(:address,:city=>"Chennai")
+    @person.add_address delhi
+    @person.add_address mumbai
+    @person.save
+    delhi.person.should eql @person
+    mumbai.person.should eql @person
+    chennai.person.should be_nil
+    @person.addresses.size.should eql 2
+  end
+
 
 end

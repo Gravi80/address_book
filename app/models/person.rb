@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
   validates_presence_of :first_name,:last_name  # should not be of zero length or nil
-  has_many :addresses
+  has_many :addresses,:class_name => Address
 
   # benefits => are composable,  find_by_names_starting_with('text').count  will fire another SQl query for count
   #you can also do find_by_names_starting_with('text').addresses
@@ -12,6 +12,10 @@ class Person < ActiveRecord::Base
   def full_name
     space=" "
     first_name<<space<<get_middle_name<<last_name
+  end
+
+  def add_address address
+      self.addresses<<address
   end
 
   private

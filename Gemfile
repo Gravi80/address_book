@@ -29,7 +29,7 @@ group :test,:development do
   gem 'database_cleaner' ,:require =>false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers'  # has lot of macros for testing things like relationships and validations.
   gem 'pg'
 end
 # Use ActiveModel has_secure_password

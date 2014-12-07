@@ -32,6 +32,7 @@ describe Address do
     address.should be_kind_of(Address)
   end
 
+  it { should belong_to(:person).class_name(Person)}
 
 
 
