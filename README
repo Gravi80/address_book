@@ -184,3 +184,9 @@ Factory Girl
         user = build(:user, first_name: "Joe") user.first_name "Joe"
 
 
+
+
+
+
+rails g rspec:model Address street:string city:string zip:integer person_id:integer
+rails g model Address street:string city:string zip:integer person_id:integer
