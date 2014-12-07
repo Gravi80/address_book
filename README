@@ -1,0 +1,186 @@
+rails console
+rails console --sandbox
+rails dbconsole
+rails server -e production -p 4000
+
+
+
+Create A New App
+================
+
+    generate a rails app of particular version
+    -------------------------------------------
+        rails _3.0.11_ new my_app
+            OR
+        rails _2.3.8_ my_app
+
+
+rails new appName  -T -d database
+
+-T is for skipping Unit Tests
+-d Specify Database Engine
+-O skip Active Record Files
+-J skip JavaScript Files
+
+
+Ex=> rails new myApp -T -d postgresql
+
+
+Scaffolding
+===========
+
+rails g model
+
+rails g controller
+    Ex => rails generate controller CreditCards open debit credit close
+          CreditCards controller with URLs like /credit_cards/debit.
+
+rails generate scaffold modelName model_attribute1:DataType model_attribute2:DataType and so on.
+
+
+Rake
+====
+rake about
+rake stats
+rake --tasks
+rake foreach 'bundle install'   =>  run rake task for all projects
+rake spec                       => run spec tests
+
+    list all routes
+    ---------------
+        rake routes
+        rake routes CONTROLLER=controller_name
+
+    route name, HTTP method, route path, route requirements
+
+
+rake db:create     =>  create Db using rake
+
+rake db:migrate    => run migration
+
+rake db:seed       => insert seed data
+
+rake db:test:prepare
+
+
+
+
+To add RSpec
+============
+rails g rspec:install
+
+rails generate rspec:model Person first_name:string last_name:string
+
+
+
+RSpec Verification
+===================
+
+should respond_to
+
+should be_nil
+    -> works with any ? method (so-called "predicates")
+
+should be_valid
+
+should_not be_nil; should_not_be_valid
+
+lambda{...}.should change(), {}, .from().to(), .by()
+
+should eql , == , equal
+
+
+
+RSpec Structure
+===============
+before, before(:each), before(:all)     => default is before(:each)
+after, after(:each),after(:all)
+describe do..end, nested
+it do... end
+
+
+
+
+Gems
+====
+gem list rails     => list all rails version
+gem list --local
+gem query --local
+
+gem query --remote
+
+gem query --remote --name-matches gem_name  => search remotely installable gems
+shortcut : gem q -R -n gem_name
+
+gem install --remote gem_name   => install a remote gem
+shortcut: gem i -r gem_name
+
+
+gem specification gem_name
+
+gem server
+
+gem install --source http://ip_addr:8808/gem_name       => install gem from other machine
+
+
+use :   require 'rubygem',
+---     require_gem 'rubygem','=2.00'
+
+
+
+
+
+
+RVM
+====
+
+    gives all ruby versions
+    -----------------------
+        rvm list
+
+        rvm list default
+
+        rvm rubies
+
+
+    switch to another ruby version
+    -------------------------------
+        rvm use ruby-1.9.3-p0
+
+
+
+
+DB migration
+============
+rails g migration description      => add new migration file
+
+
+
+Factory Girl
+=============
+
+    Returns a User instance that's not saved
+    -----------------------------------------
+        user = build(:user)
+
+    Returns a saved User instance
+    ------------------------------
+        user = create(:user)
+
+    Returns a hash of attributes that can be used to build a User instance
+    -----------------------------------------------------------------------
+        attrs = attributes_for(:user)
+
+    Returns an object with all defined attributes stubbed out
+    ----------------------------------------------------------
+        stub = build_stubbed(:user)
+
+    Passing a block to any of the methods above will yield the return object
+    -------------------------------------------------------------------------
+        create(:user) do |user| user.posts.create(attributes_for(:post)) end
+
+    Build a User instance and override the first_name property
+    -----------------------------------------------------------
+        user = build(:user, first_name: "Joe") user.first_name "Joe"
+
+

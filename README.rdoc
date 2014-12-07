@@ -1,0 +1,8 @@
+== README
+
+create migration file
+----------------------
+
+rails generate migration migration_description
+
+
