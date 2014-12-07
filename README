@@ -190,3 +190,12 @@ Factory Girl
 
 rails g rspec:model Address street:string city:string zip:integer person_id:integer
 rails g model Address street:string city:string zip:integer person_id:integer
+
+
+Querying
+=======
+Person.all()
+Person.where("first_name LIKE :term OR last_name LIKE :term",:term=>text+"%")
+Person.first()
+Person.last()
+

@@ -1,9 +1,9 @@
 FactoryGirl.define do
-  factory :address do
+  factory :address, class: Address do
     street "First Street"
     city "Delhi"
     zip 110098
-    person_id 1
+    association :person_id,:factory => :person
   end
 
 end

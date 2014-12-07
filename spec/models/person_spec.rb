@@ -46,5 +46,18 @@ describe Person do
     ravi.should be_valid
   end
 
+  it 'can make a person from factory' do
+    @person.should_not be_nil
+    @person.should be_kind_of(Person)
+  end
+
+  it 'should find people by partial name matches'do
+    ravi=FactoryGirl.create(:person)
+    ram_lal=FactoryGirl.create(:person,:first_name=>"Ram",:last_name=>"Lal")
+    lalo_ram=FactoryGirl.create(:person,:first_name=>"Lalo",:last_name=>"Ram")
+    Person.all.should == [ravi,ram_lal,lalo_ram]
+    Person.find_by_names_starting_with("Ram").should == [lalo_ram,ram_lal]
+  end
+
 
 end
