@@ -45,7 +45,7 @@ describe PeopleController do
       assigns[:person].should_not be_nil
       assigns[:person].should be_a_kind_of(Person)
       assigns[:person].should be_new_record
-
+      assigns[:person].addresses.should_not be_empty
     end
 
   end
