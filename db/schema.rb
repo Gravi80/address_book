@@ -61,7 +61,9 @@ ActiveRecord::Schema.define(version: 20141208061506) do
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "orders", force: true do |t|
-    t.integer "customer_id"
+    t.integer  "customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
