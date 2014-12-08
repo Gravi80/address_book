@@ -4,6 +4,7 @@ FactoryGirl.define do
     city "Delhi"
     zip 110098
     association :person
+    state "MP"
   end
 
 end

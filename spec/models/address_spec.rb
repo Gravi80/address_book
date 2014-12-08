@@ -5,14 +5,33 @@ describe Address do
   context "Validations" do
     before do
       @addr=Address.new
-      @addr.should_not be_valid
     end
 
     [:city,:zip,:street].each do |attribute|
       it "must have a #{attribute}" do
+        @addr.should_not be_valid
         @addr.errors_on(attribute).should_not be_empty
       end
     end
+
+    it 'require state to be of max length 2' do
+      @addr.state = 'Pune'
+      @addr.should_not be_valid
+      @addr.errors_on(:state).should_not be_blank
+    end
+
+    it 'require a state only if country is India' do
+      india=FactoryGirl.build(:address,:country=>"India")
+      india.state = nil
+      india.should_not be_valid
+    end
+
+    it 'doesn\'t require a state if country is not India' do
+      usa=FactoryGirl.build(:address,:country=>"USA")
+      usa.state = nil
+      usa.should be_valid
+    end
+
 
   end
 
