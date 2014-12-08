@@ -32,6 +32,17 @@ describe Message do
         msg.sender.should be_a_kind_of(Person)
     end
 
+    it 'can retrieve new messages' do
+      recipient = FactoryGirl.create(:person)
+      msg_new = FactoryGirl.create(:message, :recipient => recipient)
+      msg_read = FactoryGirl.create(:read_message, :recipient => recipient)
+
+      # Verify data set is non-trivial and correct
+      recipient.messages.should == [msg_read,msg_new]
+
+      recipient.unread_messages.should == [msg_new]
+    end
+
   end
 
 end
