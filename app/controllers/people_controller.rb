@@ -8,14 +8,13 @@ class PeopleController < ApplicationController
   end
 
   def new
-    @people=Person.new
+    @person=Person.new
   end
 
   def edit
   end
 
   def create
-    p "came here"
     person=params[:person]
     @person=Person.new({:first_name=>person[:first_name],:last_name=>person[:last_name]})
     (@person.save && (redirect_to people_path)) || (render 'new')

@@ -1,2 +1,19 @@
 <h1>People#new</h1>
-<p>Find me in app/views/people/new.html.erb</p>
+
+<!--When @person is new, uses people_path method to generate URL , PeopleController#create-->
+<!--When @person exists already uses person_path method to generate URL, PeopleController#update-->
+
+<%= form_for @person do |f| %>
+    <p>
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %>
+    </p>
+    <p>
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </p>
+
+    <p id="submit">
+      <%= f.submit %>
+    </p>
+<% end  %>
