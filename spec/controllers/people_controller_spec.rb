@@ -50,6 +50,58 @@ describe PeopleController do
 
   end
 
+  describe "POST 'create'" do
+    before do
+      # you can check parameters in form
+      @post_parameters={ :person => {:first_name=>"Ravi",
+                                     :last_name=>"Sharma"}
+      }
+    end
+
+    it 'should assign a @person variable' do
+      post :create,@post_parameters
+      assigns[:person].should_not be_nil
+      assigns[:person].should be_a_kind_of(Person)
+    end
+
+    context "when successful" do
+
+      it 'redirects to index'do
+        post :create,@post_parameters
+        response.should redirect_to(people_path)
+      end
+      it 'creates a Person record' do
+        lambda{
+          post :create,@post_parameters
+        }.should change(Person,:count).by(1)
+      end
+
+    end
+
+    context "When failure" do
+      before do
+        @post_parameters={ :person => {:first_name=>'',
+                                       :last_name=>"Sharma"}
+        }
+      end
+      it 're-renders the "new" template'do
+        post  :create,@post_parameters
+        response.should render_template('new')
+      end
+      it 'does not creates a Person record' do
+        lambda{
+          post :create,@post_parameters
+        }.should_not change(Person,:count)
+      end
+    end
+    context "when using a verb other than POST" do
+      it 'rejects the request' do
+          controller.should_not_receive(:create)
+          get :create
+      end
+    end
+  end
+
   describe "GET 'edit'" do
     it "returns http success" do
       get 'edit'
