@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   has_many :addresses
   has_many :messages,:class_name => Message,:foreign_key => :recipient_id
   has_many :unread_messages,-> { where read_at: nil }, :class_name => Message , :foreign_key => :recipient_id
+  accepts_nested_attributes_for :addresses  # works only when you have a association
 
   # benefits => are composable,  find_by_names_starting_with('text').count  will fire another SQl query for count
   #you can also do find_by_names_starting_with('text').addresses

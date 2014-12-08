@@ -53,9 +53,14 @@ describe PeopleController do
   describe "POST 'create'" do
     before do
       # you can check parameters in form
-      @post_parameters={ :person => {:first_name=>"Ravi",
-                                     :last_name=>"Sharma"}
-      }
+      @post_parameters={ :person => {
+                                      :first_name=>"Ravi",
+                                      :last_name=>"Sharma",
+                                      :addresses_attributes => [{:city => "San Francisco",
+                                                                 :street => "123 Main St",
+                                                                 :zip => "94103",
+                                                                 :state => "CA"}]
+      }}
     end
 
     it 'should assign a @person variable' do
@@ -72,8 +77,11 @@ describe PeopleController do
       end
       it 'creates a Person record' do
         lambda{
-          post :create,@post_parameters
-        }.should change(Person,:count).by(1)
+          lambda{
+            post :create,@post_parameters
+          }.should change(Person,:count).by(1)
+        }.should change(Address,:count).by(1)
+
       end
 
     end

@@ -74,6 +74,21 @@ describe Person do
 
 
   describe "Nested Attributes" do
+
+    it 'should create an address record from attributes' do
+      lambda{
+        lambda{
+          Person.create(:first_name=>"Ravi",
+                        :last_name=>"Sharma",
+                        :addresses_attributes => [{:city => "San Francisco",
+                                                   :street => "123 Main St",
+                                                   :zip => "94103",
+                                                   :state => "CA"}]
+          )
+        }.should change(Person,:count).by(1)
+      }.should change(Address,:count).by(1)
+    end
+    
       context "creating" do
         subject { Person.new(:first_name => "Ravi", :last_name => "Sharma") }
         it 'creates an address' do
