@@ -1,3 +1,5 @@
+rspec spec --colour --format documentation
+
 rails console
 rails console --sandbox
 
@@ -191,6 +193,8 @@ Factory Girl
         user = build(:user, first_name: "Joe") user.first_name "Joe"
 
 
+    Factory Girl anti-patterns
+    --------------------------
 
 
 
