@@ -42,7 +42,6 @@ describe PeopleController do
 
     it "assign a new Person object" do
       get :new
-
       assigns[:people].should_not be_nil
       assigns[:people].should be_a_kind_of(Person)
       assigns[:people].should be_new_record
