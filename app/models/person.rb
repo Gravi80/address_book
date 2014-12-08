@@ -1,6 +1,7 @@
 class Person < ActiveRecord::Base
   validates_presence_of :first_name,:last_name  # should not be of zero length or nil
-  has_many :addresses,:class_name => Address
+  has_many :addresses
+  has_many :messages,:class_name => Message,:foreign_key => :recipient_id
 
   # benefits => are composable,  find_by_names_starting_with('text').count  will fire another SQl query for count
   #you can also do find_by_names_starting_with('text').addresses

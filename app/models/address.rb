@@ -1,7 +1,7 @@
 class Address < ActiveRecord::Base
   validates_presence_of :city,:zip ,:street
   validates_numericality_of :zip
-  belongs_to :person,:class_name => Person,:foreign_key => :person_id # always on the side where the foreign key is there
+  belongs_to :person,:class_name => Person # always on the side where the foreign key is there
 
   before_save :default_county_if_blank
   

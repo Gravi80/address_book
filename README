@@ -197,6 +197,7 @@ Factory Girl
 
 rails g rspec:model Address street:string city:string zip:integer person_id:integer
 rails g model Address street:string city:string zip:integer person_id:integer
+rails g model Message sender_id:integer recipient_id:integer subject:string body:text read_at:datetime
 
 
 Querying

@@ -64,15 +64,39 @@ describe Person do
   it 'should save the multiple address of a person' do
     delhi=FactoryGirl.create(:address)
     mumbai=FactoryGirl.create(:address,:city=>"Mumbai")
-    chennai=FactoryGirl.create(:address,:city=>"Chennai")
     @person.add_address delhi
     @person.add_address mumbai
     @person.save
     delhi.person.should eql @person
     mumbai.person.should eql @person
-    chennai.person.should be_nil
     @person.addresses.size.should eql 2
   end
 
+
+  describe "Nested Attributes" do
+      context "creating" do
+        subject { Person.new(:first_name => "Ravi", :last_name => "Sharma") }
+        it 'creates an address' do
+          lambda {
+            subject.addresses = [Address.new({:city => "San Francisco", :street => "123 Main St", :zip =>94103})]
+            subject.save!
+          }.should change {subject.addresses(true).count}.from(0).to(1)
+        end
+      end
+  end
+
+
+
+  describe "Associations" do
+    it 'has message' do
+      Person.new.should respond_to(:messages)
+    end
+
+    it 'can retrieve messages' do
+      p = FactoryGirl.build(:person)
+      p.messages.should be_empty
+    end
+
+  end
 
 end
