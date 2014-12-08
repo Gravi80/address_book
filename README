@@ -217,3 +217,60 @@ Scope under Model
 =================
 scope :submitted, -> { where(submitted: true) }
 scope :underutilized, -> { where('total_hours < 40') }
+
+
+Mocks
+=====
+
+m = mock("A Mock")
+m.stub(:foo)      { give this mock a function/method called foo }
+m.foo => nil      { now m.foo will retrun nil }
+
+m.stub(:foo).and_return("hello")    { give this mock a function/method called foo and retun "hello" }
+
+m.foo => "hello"
+
+m=mock("A Mock",:foo=>"hello")    { shortcut creating a mock and adding methods to it}
+
+
+m.should_receive(:foo)                           => m should call method foo one time
+m.should_receive(:foo).and_return("hello")
+
+m.should_receive(:foo).twice
+m.should_receive(:foo).exactly(5).times
+
+
+
+m.should_receive(:foo).with(/ello/)    => m should call method foo with argument regex /ello/
+
+    With Argument can be Regex/Hash/Block
+    ---------------------------------------
+        with(hash_including(:name=>'joe'))
+        with{|arg1,arg2|
+            arg1.should=='abc'
+            arg2.should==2
+        }
+
+Partial Mocks
+==============
+jan1=Time.civil(2010)
+
+    Replace a method on an existing class.
+    --------------------------------------
+    Time.stub!(:now).and_return(jan1)
+
+    Add a method to an existing class.
+    ----------------------------------
+    Time.stub!(:jan1).and_return(jan1)
+
+
+
+
+Controllers
+============
+    GET methods
+    -----------
+        index   =>  shows all
+        show    =>  show one thing
+        new     =>  displays form for new thing
+        edit    =>  displays form for existing thing
