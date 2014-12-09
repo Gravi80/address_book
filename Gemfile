@@ -26,11 +26,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 group :test,:development do
-  gem 'database_cleaner' ,:require =>false
+  gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'  # has lot of macros for testing things like relationships and validations.
   gem 'pg'
+  gem 'awesome_print'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

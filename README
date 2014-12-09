@@ -274,3 +274,45 @@ Controllers
         show    =>  show one thing
         new     =>  displays form for new thing
         edit    =>  displays form for existing thing
+
+
+
+Ever asked: “if I have an object, what method can I call on it to get that result?”
+=====================================================================================
+
+gem install what_methods
+
+irb
+require 'what_methods'
+3.45.what? 3    =>  what method i should call on "3.45" to get result 3
+
+
+
+2.1.5 :013 > your_object.methods.sort                   => list all methods you can call
+
+
+Better object format
+=====================
+rails c
+y Person.first
+
+
+Awesome Print
+=============
+http://stackoverflow.com/questions/15015897/cant-get-awesome-print-gem-to-work
+
+
+$ gem install awesome_print
+
+         Add it to your Gemfile inside development like this:
+         ----------------------------------------------------
+            gem 'awesome_print', :require => 'ap'
+
+         add these two lines to your ~/.irbrc file to set ap to be your default pager:
+         -----------------------------------------------------------------------------
+            require "awesome_print"
+            AwesomePrint.irb!
+
+
+ap object, options = {}             => usage
+rails> ap Account.limit(2).all
